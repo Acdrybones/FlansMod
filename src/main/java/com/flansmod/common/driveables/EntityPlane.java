@@ -688,9 +688,15 @@ public class EntityPlane extends EntityDriveable
 				
 		//Sounds
 		//Starting sound
+		if (throttle > 0.0F && throttle < 0.01F && soundPosition == 0 && hasEnoughFuel())
+		{ 
+			PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, type.ignitionSound, false);
+			soundPosition = type.startSoundLength;
+			
+		}
 		if (throttle > 0.01F && throttle < 0.2F && soundPosition == 0 && hasEnoughFuel())
 		{
-			PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, type.startSound, false);
+			PacketPlaySound.sendSoundPacket(posX, posY, posZ, FlansMod.soundRange, dimension, type.idleSound, false);
 			soundPosition = type.startSoundLength;
 		}
 		//Flying sound
